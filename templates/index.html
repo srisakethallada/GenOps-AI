@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenOps AI – Intelligent DevOps Troubleshooting Assistant</title>
+  <meta name="description" content="Analyze AWS, Linux, Docker, Terraform, and Jenkins errors using Generative AI." />
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════ -->
+<nav class="navbar-genops">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between w-100">
+
+      <!-- Brand -->
+      <a href="#" class="navbar-brand-genops text-decoration-none">
+        <div class="brand-icon"><i class="fa-solid fa-microchip"></i></div>
+        <span class="brand-text">GenOps <span>AI</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="d-none d-md-flex align-items-center gap-1">
+        <a href="#" class="nav-link-genops active">
+          <i class="fa-solid fa-house me-1" style="font-size:.75rem;"></i>Home
+        </a>
+        <a href="#features" class="nav-link-genops">Features</a>
+        <a href="#panel" class="nav-link-genops">
+          Analyze <span class="nav-badge">AI</span>
+        </a>
+        <a href="#docs" class="nav-link-genops">Docs</a>
+        <a href="#contact" class="nav-link-genops">Contact</a>
+      </div>
+
+      <!-- CTA + Hamburger -->
+      <div class="d-flex align-items-center gap-2">
+        <a href="#panel" class="btn-primary-genops d-none d-sm-inline-flex" style="padding:9px 18px;font-size:.82rem;">
+          <i class="fa-solid fa-bolt"></i> Try Now
+        </a>
+        <button class="navbar-toggler-genops d-md-none" id="navToggler"
+                aria-label="Toggle navigation" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="d-md-none mt-3 pb-2 d-none" id="mobileMenu">
+      <div class="d-flex flex-column gap-1">
+        <a href="#" class="nav-link-genops">Home</a>
+        <a href="#features" class="nav-link-genops">Features</a>
+        <a href="#panel" class="nav-link-genops">Analyze</a>
+        <a href="#docs" class="nav-link-genops">Docs</a>
+        <a href="#contact" class="nav-link-genops">Contact</a>
+        <a href="#panel" class="btn-primary-genops mt-1" style="padding:10px 18px;font-size:.85rem;justify-content:center;">
+          <i class="fa-solid fa-bolt"></i> Try Now
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════ -->
+<section class="hero-section" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center gy-5">
+
+      <!-- Left copy -->
+      <div class="col-lg-6">
+        <div class="hero-eyebrow">
+          <span class="pulse-dot"></span>
+          Powered by Generative AI
+        </div>
+
+        <h1 class="hero-title">
+          Intelligent <span class="highlight">DevOps</span><br />
+          Troubleshooting<br />Assistant
+        </h1>
+
+        <p class="hero-subtitle">
+          Diagnose AWS, Linux, Docker, Terraform, and Jenkins errors in seconds.
+          Get root causes, step-by-step fixes, and prevention tips — all powered by
+          large language models.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 align-items-center">
+          <a href="#panel" class="btn-primary-genops">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            Start Analyzing
+          </a>
+          <a href="#features" class="btn-secondary-genops">
+            <i class="fa-solid fa-play-circle"></i>
+            See How It Works
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">Platforms</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-num">&lt;3s</span>
+            <span class="stat-label">Avg. Response</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-num">GenAI</span>
+            <span class="stat-label">Powered</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right terminal -->
+      <div class="col-lg-6">
+        <div class="hero-visual">
+          <div class="hero-terminal">
+            <div class="terminal-titlebar">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+              <span class="terminal-title">genops-ai &mdash; analysis terminal</span>
+            </div>
+            <div class="terminal-body">
+              <div class="term-line">
+                <span class="term-prompt">$</span>
+                <span class="term-cmd">genops analyze --platform aws --error "AccessDenied"</span>
+              </div>
+              <div class="term-line">
+                <span class="term-output">⠸ Connecting to GenAI backend...</span>
+              </div>
+              <div class="term-line">
+                <span class="term-output">✓ Model loaded: claude-sonnet</span>
+              </div>
+              <div class="term-line" style="margin-top:6px;">
+                <span class="term-error">✗ Error: AccessDeniedException – s3:GetObject on arn:aws:s3:::prod-bucket/*</span>
+              </div>
+              <div class="term-line" style="margin-top:8px;">
+                <span class="term-ai">◆ Root Cause: IAM role missing s3:GetObject permission</span>
+              </div>
+              <div class="term-line">
+                <span class="term-ai">◆ Fix: Attach AmazonS3ReadOnlyAccess or update inline policy</span>
+              </div>
+              <div class="term-line">
+                <span class="term-ai">◆ Prevention: Use IAM Access Analyzer to audit policies</span>
+              </div>
+              <div class="term-line" style="margin-top:6px;">
+                <span class="term-prompt">$</span>
+                <span class="term-cursor"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════════ -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label"><i class="fa-solid fa-route me-1"></i>Workflow</div>
+      <h2 class="section-title">How GenOps AI Works</h2>
+    </div>
+
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-circle"><i class="fa-solid fa-paste"></i></div>
+        <div class="step-label">Paste Error</div>
+        <div class="step-desc">Copy your error message from any DevOps tool</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle"><i class="fa-solid fa-list-check"></i></div>
+        <div class="step-label">Select Category</div>
+        <div class="step-desc">Choose AWS, Linux, Docker, Terraform, or Jenkins</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle"><i class="fa-solid fa-brain"></i></div>
+        <div class="step-label">AI Analyzes</div>
+        <div class="step-desc">GenAI model processes context and identifies issues</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="step-label">Get Solutions</div>
+        <div class="step-desc">Receive root cause, fix steps, and prevention tips</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TROUBLESHOOTING PANEL
+═══════════════════════════════════════════════════ -->
+<section class="panel-section" id="panel">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-7 text-center">
+        <div class="section-label"><i class="fa-solid fa-terminal me-1"></i>Analysis Engine</div>
+        <h2 class="section-title">Paste Your Error Message</h2>
+        <p class="section-sub mx-auto">Select the platform, paste the error log or message, and let the AI diagnose it instantly.</p>
+        <div class="divider-accent mx-auto"></div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="panel-card">
+
+          <!-- Category Selector -->
+          <label class="form-label-genops">
+            <i class="fa-solid fa-layer-group me-1"></i>Platform / Category
+          </label>
+         <form action="/analyze" method="POST">
+          <div class="category-selector" id="categorySelector" role="group" aria-label="Platform selector">
+            <button class="cat-pill active" data-cat="aws" onclick="selectCat(this)" type="button">
+              <i class="fa-brands fa-aws"></i> AWS
+            </button>
+            <button class="cat-pill" data-cat="linux" onclick="selectCat(this)" type="button">
+              <i class="fa-brands fa-linux"></i> Linux
+            </button>
+            <button class="cat-pill" data-cat="docker" onclick="selectCat(this)" type="button">
+              <i class="fa-brands fa-docker"></i> Docker
+            </button>
+            <button class="cat-pill" data-cat="terraform" onclick="selectCat(this)" type="button">
+              <i class="fa-solid fa-cube"></i> Terraform
+            </button>
+            <button class="cat-pill" data-cat="jenkins" onclick="selectCat(this)" type="button">
+              <i class="fa-solid fa-gears"></i> Jenkins
+            </button>
+          </div>
+
+          <!-- Hidden select for Flask form compatibility -->
+          <select name="category" id="categoryInput" class="d-none" aria-label="Selected category">
+            <option value="aws">AWS</option>
+            <option value="linux">Linux</option>
+            <option value="docker">Docker</option>
+            <option value="terraform">Terraform</option>
+            <option value="jenkins">Jenkins</option>
+          </select>
+
+          <!-- Error textarea -->
+          <div class="mt-4">
+            <label class="form-label-genops" for="errorInput">
+              <i class="fa-solid fa-bug me-1"></i>Error Message / Log
+            </label>
+            <textarea
+    id="errorInput"
+    name="error_message"
+    class="form-control-genops"
+    rows="7"
+>{{ request.form.get('error_message', '') }}</textarea>
+            <div class="d-flex justify-content-between align-items-center mt-1" style="font-size:0.72rem; color:var(--text-muted);">
+              <span><i class="fa-solid fa-circle-info me-1"></i>Supports full stack traces and multi-line logs</span>
+              <span id="charCount">0 characters</span>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="d-flex gap-3 align-items-center mt-4 flex-wrap">
+            <button class="btn-analyze" id="analyzeBtn" type="submit">
+              <span class="genops-spinner" id="spinner"></span>
+              <i class="fa-solid fa-magnifying-glass-chart btn-icon-normal" id="btnIcon"></i>
+              <span id="btnLabel">Analyze Error</span>
+            </button>
+            <button class="btn-clear-genops" onclick="clearPanel()" type="button">
+              <i class="fa-solid fa-rotate-left"></i> Clear
+            </button>
+            <div class="ms-auto">
+              <span class="status-badge badge-waiting" id="statusBadge">
+                <i class="fa-solid fa-circle-dot"></i> Ready
+              </span>
+            </div>
+          </div>
+
+          <!-- Success alert (hidden by default) -->
+          <div class="genops-alert d-none" id="successAlert">
+            <i class="fa-solid fa-circle-check"></i>
+            Analysis complete — results shown below.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
+
+<!-- ═══════════════════════════════════════════════════
+     AI RESPONSE CARDS
+═══════════════════════════════════════════════════ -->
+<section class="response-section" id="response">
+  <div class="container">
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-7 text-center">
+        <div class="section-label"><i class="fa-solid fa-brain me-1"></i>AI Output</div>
+        <h2 class="section-title">Analysis Results</h2>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center" id="resultCards">
+
+      <!-- Root Cause -->
+      <div class="col-md-6 col-lg-4">
+        <div class="response-card">
+          <div class="response-card-icon icon-red">
+            <i class="fa-solid fa-magnifying-glass-arrow-right"></i>
+          </div>
+          <div class="response-card-title">Root Cause</div>
+          <div class="response-card-body" id="rootCause">
+  {{ root_cause if root_cause else "Paste an error and click Analyze Error to see the diagnosed root cause here." }}
+</div>
+        </div>
+      </div>
+
+      <!-- Solution Steps -->
+      <div class="col-md-6 col-lg-4">
+        <div class="response-card">
+          <div class="response-card-icon icon-blue">
+            <i class="fa-solid fa-list-ol"></i>
+          </div>
+          <div class="response-card-title">Solution Steps</div>
+          <div class="response-card-body" id="solutionSteps">
+  {{ solution if solution else "Step-by-step remediation commands and configuration changes will appear here after analysis." }}
+</div>
+        </div>
+      </div>
+
+      <!-- Prevention Tips -->
+      <div class="col-md-6 col-lg-4">
+        <div class="response-card">
+          <div class="response-card-icon icon-green">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="response-card-title">Prevention Tips</div>
+          <div class="response-card-body" id="preventionTips">
+  {{ prevention if prevention else "Best practices and proactive monitoring strategies to prevent recurrence will appear here." }}
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Additional context card (initially hidden) -->
+    <div class="row justify-content-center mt-4 d-none" id="extraRow">
+      <div class="col-lg-8">
+        <div class="response-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="response-card-icon icon-orange" style="margin-bottom:0;">
+              <i class="fa-solid fa-link"></i>
+            </div>
+            <div>
+              <div class="response-card-title" style="margin-bottom:0;">Related Resources</div>
+              <div style="font-size:0.78rem;color:var(--text-muted);">Documentation &amp; references</div>
+            </div>
+          </div>
+          <div class="response-card-body" id="relatedResources">
+  {{ related_resources if related_resources else "—" }}
+</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     RECENT ANALYSIS TABLE
+═══════════════════════════════════════════════════ -->
+<section class="table-section" id="history">
+  <div class="container">
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-7 text-center">
+        <div class="section-label"><i class="fa-solid fa-clock-rotate-left me-1"></i>History</div>
+        <h2 class="section-title">Recent Analyses</h2>
+        <p class="section-sub mx-auto">A log of your most recent troubleshooting sessions in this session.</p>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-header">
+        <div class="table-header-title">
+          <i class="fa-solid fa-table-list text-accent"></i>
+          Session History
+        </div>
+        <button class="btn-clear-genops" style="padding:6px 14px;font-size:0.78rem;" onclick="clearHistory()" type="button">
+          <i class="fa-solid fa-trash-can"></i> Clear
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table-genops" id="historyTable" aria-label="Analysis history">
+          <thead>
+            <tr>
+              <th><i class="fa-regular fa-clock me-1"></i>Timestamp</th>
+              <th>Category</th>
+              <th>Query Preview</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <!-- Sample rows -->
+            <tr>
+              <td>2024-01-15 &nbsp;09:42:11</td>
+              <td><span class="cat-tag aws"><i class="fa-brands fa-aws me-1"></i>AWS</span></td>
+              <td class="query-cell">AccessDeniedException: User not authorized to perform s3:GetObject…</td>
+              <td><span class="status-badge badge-done"><i class="fa-solid fa-circle-check"></i> Resolved</span></td>
+            </tr>
+            <tr>
+              <td>2024-01-15 &nbsp;09:18:03</td>
+              <td><span class="cat-tag docker"><i class="fa-brands fa-docker me-1"></i>Docker</span></td>
+              <td class="query-cell">Error response from daemon: Cannot connect to Docker daemon at unix:///var/run/docker.sock</td>
+              <td><span class="status-badge badge-done"><i class="fa-solid fa-circle-check"></i> Resolved</span></td>
+            </tr>
+            <tr>
+              <td>2024-01-14 &nbsp;17:55:29</td>
+              <td><span class="cat-tag terraform"><i class="fa-solid fa-cube me-1"></i>Terraform</span></td>
+              <td class="query-cell">Error: Invalid index — The given key does not identify an element in this collection value</td>
+              <td><span class="status-badge badge-done"><i class="fa-solid fa-circle-check"></i> Resolved</span></td>
+            </tr>
+            <tr>
+              <td>2024-01-14 &nbsp;14:32:07</td>
+              <td><span class="cat-tag linux"><i class="fa-brands fa-linux me-1"></i>Linux</span></td>
+              <td class="query-cell">bash: /usr/bin/python3: Permission denied — chmod issue on production server</td>
+              <td><span class="status-badge badge-done"><i class="fa-solid fa-circle-check"></i> Resolved</span></td>
+            </tr>
+            <tr>
+              <td>2024-01-14 &nbsp;11:08:55</td>
+              <td><span class="cat-tag jenkins"><i class="fa-solid fa-gears me-1"></i>Jenkins</span></td>
+              <td class="query-cell">FATAL: java.io.IOException: remote file operation failed: /home/jenkins agent channel</td>
+              <td><span class="status-badge badge-analyzing"><i class="fa-solid fa-spinner fa-spin"></i> Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURES SECTION
+═══════════════════════════════════════════════════ -->
+<section class="features-section" id="features">
+  <div class="container position-relative">
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6 text-center">
+        <div class="section-label"><i class="fa-solid fa-star me-1"></i>Capabilities</div>
+        <h2 class="section-title">Built for DevOps Teams</h2>
+        <p class="section-sub mx-auto">Everything you need to diagnose, fix, and prevent infrastructure errors at speed.</p>
+        <div class="divider-accent mx-auto"></div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Feature 1 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <div class="feature-title">AI-Powered Analysis</div>
+          <div class="feature-desc">
+            Large language models decode complex stack traces and pinpoint root causes with contextual understanding.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">LLM</span>
+            <span class="tech-chip">NLP</span>
+            <span class="tech-chip">Claude</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-brands fa-aws"></i>
+          </div>
+          <div class="feature-title">Cloud Troubleshooting</div>
+          <div class="feature-desc">
+            Deep knowledge of IAM, S3, EC2, Lambda, RDS, and 50+ AWS services for fast cloud error resolution.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">IAM</span>
+            <span class="tech-chip">EC2</span>
+            <span class="tech-chip">Lambda</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-code-branch"></i>
+          </div>
+          <div class="feature-title">DevOps Guidance</div>
+          <div class="feature-desc">
+            CI/CD pipeline failures, container crashes, and automation errors resolved with expert-level advice.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">Jenkins</span>
+            <span class="tech-chip">Docker</span>
+            <span class="tech-chip">CI/CD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="feature-title">IaC Recommendations</div>
+          <div class="feature-desc">
+            Terraform and infrastructure-as-code errors diagnosed with state management and provider insight.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">Terraform</span>
+            <span class="tech-chip">HCL</span>
+            <span class="tech-chip">State</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="feature-title">Prevention Strategies</div>
+          <div class="feature-desc">
+            Beyond fixing — GenOps AI provides proactive monitoring setups, alerting rules, and policy hardening.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">CloudWatch</span>
+            <span class="tech-chip">Alerts</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-brands fa-linux"></i>
+          </div>
+          <div class="feature-title">Linux Diagnostics</div>
+          <div class="feature-desc">
+            Kernel panics, permission errors, service failures, and network issues on any Linux distribution.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">systemd</span>
+            <span class="tech-chip">bash</span>
+            <span class="tech-chip">syslog</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 7 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div class="feature-title">Session History</div>
+          <div class="feature-desc">
+            Every analysis is logged in your session so you can review past errors and track recurring issues.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">Logging</span>
+            <span class="tech-chip">Export</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 8 -->
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <div class="feature-title">Instant Results</div>
+          <div class="feature-desc">
+            Sub-3-second response times powered by optimized inference pipelines and streamed output.
+          </div>
+          <div class="feature-tech-list">
+            <span class="tech-chip">Streaming</span>
+            <span class="tech-chip">Flask</span>
+            <span class="tech-chip">REST API</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer class="footer-genops" id="contact">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Brand col -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">
+          <div class="brand-icon"><i class="fa-solid fa-microchip"></i></div>
+          GenOps <span style="color:var(--accent);">AI</span>
+        </div>
+        <p class="footer-tagline">
+          An Intelligent DevOps Troubleshooting Assistant powered by Generative AI.
+          Built as a final-year project exploring AWS + DevOps + LLMs.
+        </p>
+        <div class="social-row mt-3">
+          <a href="#" class="social-btn" aria-label="GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter / X" title="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="mailto:contact@genops.ai" class="social-btn" aria-label="Email" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Platform col -->
+      <div class="col-lg-2 col-md-6 col-sm-4" id="docs">
+        <div class="footer-heading">Platforms</div>
+        <ul class="footer-link-list">
+          <li><a href="#panel"><i class="fa-brands fa-aws fa-fw"></i>AWS</a></li>
+          <li><a href="#panel"><i class="fa-brands fa-linux fa-fw"></i>Linux</a></li>
+          <li><a href="#panel"><i class="fa-brands fa-docker fa-fw"></i>Docker</a></li>
+          <li><a href="#panel"><i class="fa-solid fa-cube fa-fw"></i>Terraform</a></li>
+          <li><a href="#panel"><i class="fa-solid fa-gears fa-fw"></i>Jenkins</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources col -->
+      <div class="col-lg-2 col-md-6 col-sm-4">
+        <div class="footer-heading">Resources</div>
+        <ul class="footer-link-list">
+          <li><a href="#"><i class="fa-solid fa-book fa-fw"></i>Documentation</a></li>
+          <li><a href="#"><i class="fa-solid fa-code fa-fw"></i>API Reference</a></li>
+          <li><a href="#"><i class="fa-solid fa-graduation-cap fa-fw"></i>Tutorials</a></li>
+          <li><a href="#"><i class="fa-solid fa-bug fa-fw"></i>Report Bug</a></li>
+          <li><a href="#"><i class="fa-brands fa-github fa-fw"></i>Contribute</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact col -->
+      <div class="col-lg-4 col-md-6 col-sm-4">
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-link-list">
+          <li>
+            <a href="mailto:contact@genops.ai">
+              <i class="fa-solid fa-envelope fa-fw"></i>contact@genops.ai
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-brands fa-github fa-fw"></i>github.com/genops-ai
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-brands fa-linkedin fa-fw"></i>linkedin.com/in/genops-ai
+            </a>
+          </li>
+        </ul>
+
+        <div class="mt-3 p-3" style="background:var(--navy-700);border:1px solid var(--card-border);border-radius:var(--radius-sm);">
+          <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:6px;">
+            Tech Stack
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;">
+            <span class="tech-chip">Python / Flask</span>
+            <span class="tech-chip">AWS Bedrock</span>
+            <span class="tech-chip">Bootstrap 5</span>
+            <span class="tech-chip">GenAI</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; 2024 GenOps AI. All rights reserved.
+        &nbsp;·&nbsp; Final-Year Project &nbsp;·&nbsp; AWS + DevOps + Generative AI
+      </div>
+      <div class="footer-made">
+        Made with <i class="fa-solid fa-heart"></i> and <i class="fa-brands fa-python" style="color:var(--blue-bright);"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ══════════════════════════════════════════════
+   GenOps AI – UI JavaScript
+══════════════════════════════════════════════ */
+
+// ── Mobile nav toggle ──────────────────────────
+document.getElementById('navToggler').addEventListener('click', function () {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('d-none');
+  this.setAttribute('aria-expanded', !menu.classList.contains('d-none'));
+});
+
+// ── Character counter ──────────────────────────
+const errorInput = document.getElementById('errorInput');
+const charCount  = document.getElementById('charCount');
+errorInput.addEventListener('input', function () {
+  charCount.textContent = this.value.length.toLocaleString() + ' characters';
+});
+
+// ── Category pill selector ─────────────────────
+function selectCat(el) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('categoryInput').value = el.dataset.cat;
+}
+
+// ── Session history ────────────────────────────
+let sessionHistory = [];
+
+function addToHistory(category, query) {
+  const now  = new Date();
+  const ts   = now.toISOString().replace('T', ' ').slice(0, 19);
+  const prev = { ts, category, query, status: 'done' };
+  sessionHistory.unshift(prev);
+  renderHistory();
+}
+
+function renderHistory() {
+  const tbody = document.getElementById('historyBody');
+  if (sessionHistory.length === 0) return;
+
+  // Prepend new row
+  const latest = sessionHistory[0];
+  const catLabels = {
+    aws: '<i class="fa-brands fa-aws me-1"></i>AWS',
+    linux: '<i class="fa-brands fa-linux me-1"></i>Linux',
+    docker: '<i class="fa-brands fa-docker me-1"></i>Docker',
+    terraform: '<i class="fa-solid fa-cube me-1"></i>Terraform',
+    jenkins: '<i class="fa-solid fa-gears me-1"></i>Jenkins',
+  };
+  const preview = latest.query.length > 80
+    ? latest.query.slice(0, 80) + '…'
+    : latest.query;
+
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>${latest.ts}</td>
+    <td><span class="cat-tag ${latest.category}">${catLabels[latest.category] || latest.category}</span></td>
+    <td class="query-cell">${escapeHtml(preview)}</td>
+    <td><span class="status-badge badge-done"><i class="fa-solid fa-circle-check"></i> Resolved</span></td>
+  `;
+  tbody.insertBefore(row, tbody.firstChild);
+}
+
+function clearHistory() {
+  sessionHistory = [];
+  const tbody = document.getElementById('historyBody');
+  tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:2rem;">No analyses yet. Paste an error above to get started.</td></tr>';
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.appendChild(document.createTextNode(str));
+  return d.innerHTML;
+}
+
+// ── Simulated analysis (replace with real fetch to Flask endpoint) ─────
+function triggerAnalysis() {
+  const errorText = document.getElementById('errorInput').value.trim();
+  const category  = document.getElementById('categoryInput').value;
+
+  if (!errorText) {
+    flashError('Please paste an error message before analyzing.');
+    return;
+  }
+
+  setAnalyzingState(true);
+  clearResults();
+
+  // ── In production, replace this block with a real fetch() to your Flask route ──
+  // fetch('/analyze', { method:'POST', headers:{'Content-Type':'application/json'},
+  //   body: JSON.stringify({ category, error_message: errorText }) })
+  //   .then(r => r.json()).then(data => renderResults(data, category, errorText));
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  // Simulated response for UI demonstration:
+  setTimeout(() => {
+    const mockResults = getMockResults(category);
+    renderResults(mockResults, category, errorText);
+    setAnalyzingState(false);
+    addToHistory(category, errorText);
+    document.getElementById('successAlert').classList.remove('d-none');
+    document.getElementById('response').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 2200);
+}
+
+function setAnalyzingState(on) {
+  const btn    = document.getElementById('analyzeBtn');
+  const label  = document.getElementById('btnLabel');
+  const badge  = document.getElementById('statusBadge');
+
+  if (on) {
+    btn.classList.add('analyzing');
+    label.textContent = 'Analyzing…';
+    badge.className = 'status-badge badge-analyzing';
+    badge.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Analyzing';
+    document.getElementById('successAlert').classList.add('d-none');
+  } else {
+    btn.classList.remove('analyzing');
+    label.textContent = 'Analyze Error';
+    badge.className = 'status-badge badge-done';
+    badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Complete';
+  }
+}
+
+function clearResults() {
+  const ids = ['rootCause', 'solutionSteps', 'preventionTips'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    el.className = 'response-card-body placeholder-text';
+    el.textContent = 'Analyzing…';
+  });
+  document.getElementById('extraRow').classList.add('d-none');
+}
+
+function renderResults(data, category, query) {
+  const rootEl  = document.getElementById('rootCause');
+  const stepEl  = document.getElementById('solutionSteps');
+  const prevEl  = document.getElementById('preventionTips');
+
+  rootEl.className = 'response-card-body';
+  rootEl.textContent = data.root_cause;
+
+  // Render numbered steps
+  stepEl.className = 'response-card-body';
+  stepEl.innerHTML = '';
+  data.steps.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'response-step';
+    div.innerHTML = `<span class="step-num">${i + 1}</span><span>${escapeHtml(s)}</span>`;
+    stepEl.appendChild(div);
+  });
+
+  prevEl.className = 'response-card-body';
+  prevEl.textContent = data.prevention;
+}
+
+function clearPanel() {
+  document.getElementById('errorInput').value = '';
+  charCount.textContent = '0 characters';
+  document.getElementById('successAlert').classList.add('d-none');
+  document.getElementById('statusBadge').className = 'status-badge badge-waiting';
+  document.getElementById('statusBadge').innerHTML = '<i class="fa-solid fa-circle-dot"></i> Ready';
+  clearResultsPlaceholder();
+}
+
+function clearResultsPlaceholder() {
+  const placeholders = {
+    rootCause: 'Paste an error and click Analyze Error to see the diagnosed root cause here.',
+    solutionSteps: 'Step-by-step remediation commands and configuration changes will appear here after analysis.',
+    preventionTips: 'Best practices and proactive monitoring strategies to prevent recurrence will appear here.',
+  };
+  Object.entries(placeholders).forEach(([id, text]) => {
+    const el = document.getElementById(id);
+    el.className = 'response-card-body placeholder-text';
+    el.textContent = text;
+  });
+}
+
+function flashError(msg) {
+  const badge = document.getElementById('statusBadge');
+  badge.className = 'status-badge badge-error';
+  badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+  setTimeout(() => {
+    badge.className = 'status-badge badge-waiting';
+    badge.innerHTML = '<i class="fa-solid fa-circle-dot"></i> Ready';
+  }, 3500);
+}
+
+// ── Mock response data ─────────────────────────
+function getMockResults(category) {
+  const responses = {
+    aws: {
+      root_cause: 'The IAM principal lacks the required s3:GetObject permission on the specified S3 resource ARN. This is an authorization failure — the identity exists, but the policy attached to it does not grant access to that resource.',
+      steps: [
+        'Open IAM Console → locate the user, role, or group executing the request.',
+        'Navigate to Permissions → review attached policies for S3 actions.',
+        'Attach AmazonS3ReadOnlyAccess or add a custom inline policy granting s3:GetObject on the bucket ARN.',
+        'If using a role, verify the trust relationship allows the calling service to assume it.',
+        'Test with: aws s3 cp s3://your-bucket/file.csv . — and check CloudTrail for authorization events.',
+      ],
+      prevention: 'Enable IAM Access Analyzer to continuously audit policies and flag overly permissive or underpermissive rules. Set up CloudTrail + CloudWatch alarms for AccessDenied events. Use least-privilege policies from day one.',
+    },
+    docker: {
+      root_cause: 'The Docker daemon socket at /var/run/docker.sock is not accessible. Either the Docker service is not running, or the current user lacks permission to access the socket.',
+      steps: [
+        'Check Docker service status: sudo systemctl status docker',
+        'Start the service if stopped: sudo systemctl start docker',
+        'Add your user to the docker group: sudo usermod -aG docker $USER',
+        'Log out and back in (or run newgrp docker) to apply group changes.',
+        'Verify socket permissions: ls -la /var/run/docker.sock',
+      ],
+      prevention: 'Add docker to sudoers or group in your provisioning scripts. Use a health-check in CI pipelines to verify Docker availability before running jobs.',
+    },
+    linux: {
+      root_cause: 'The execute bit has been removed from the Python 3 binary or its directory path has incorrect permissions, preventing the shell from launching the interpreter.',
+      steps: [
+        'Check current permissions: ls -la /usr/bin/python3',
+        'Restore execute bit: sudo chmod +x /usr/bin/python3',
+        'Verify binary ownership: sudo chown root:root /usr/bin/python3',
+        'Check directory permissions up the path: namei -l /usr/bin/python3',
+        'If SELinux is active: sudo restorecon -v /usr/bin/python3',
+      ],
+      prevention: 'Avoid running chmod -R or chown -R on /usr/bin. Use file integrity monitoring (e.g., AIDE) to alert on permission changes to critical system binaries.',
+    },
+    terraform: {
+      root_cause: 'Terraform is attempting to reference an index key that does not exist in the current state map or variable collection. This typically occurs when a for_each or count value has changed between plan and apply, or a variable was renamed.',
+      steps: [
+        'Run terraform plan to inspect the full diff and identify the offending resource.',
+        'Check your variables.tf and tfvars for the collection being indexed.',
+        'Use terraform state list to verify current state entries.',
+        'If the key was removed, use terraform state rm to remove the stale reference.',
+        'Update resource references to use lookup() with a default: lookup(var.map, "key", "default").',
+      ],
+      prevention: 'Pin module versions and avoid dynamic keys derived from external data sources without null-checks. Use terraform validate in your CI pipeline before every apply.',
+    },
+    jenkins: {
+      root_cause: 'The Jenkins agent channel has been disrupted, most commonly due to a network timeout, JVM crash on the agent node, or the agent process being killed by the OS OOM killer.',
+      steps: [
+        'Go to Manage Jenkins → Nodes → check the affected agent status.',
+        'Review agent logs at: /var/log/jenkins/agent.log on the target machine.',
+        'Check system memory and OOM events: dmesg | grep -i oom',
+        'Reconnect the agent via UI or: java -jar agent.jar -jnlpUrl <url> -secret <secret>',
+        'If persistent, increase JVM heap for the agent: -Xmx2g in agent startup arguments.',
+      ],
+      prevention: 'Set up Jenkins agent health-check pipelines. Configure automatic node reconnection in Jenkins global settings. Monitor agent JVM heap usage with CloudWatch or Prometheus.',
+    },
+  };
+  return responses[category] || responses.aws;
+}
+</script>
+<script>
+window.onload = function() {
+    const rootCause = document.getElementById("rootCause");
+
+    if (
+        rootCause &&
+        !rootCause.innerText.includes("Paste an error and click")
+    ) {
+        document.getElementById("response").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+};
+</script>
+</body>
+</html>
