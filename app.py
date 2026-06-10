@@ -107,4 +107,4 @@ Keep the response practical, production-ready, and easy for DevOps engineers to 
     )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
